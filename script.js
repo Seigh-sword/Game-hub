@@ -3,7 +3,9 @@ const gameFrame = document.getElementById('gameFrame');
 const iframeContainer = document.getElementById('iframeContainer');
 const backBtn = document.getElementById('backBtn');
 const fullscreenBtn = document.getElementById('fullscreenBtn');
-const minimizeBtn = document.getElementById('minimizeBtn');
+
+// Button click sound
+const clickSound = new Audio('assets/click-sfx.mp3');
 
 // Store folder names to avoid duplicates
 const loadedGames = new Set();
@@ -33,6 +35,7 @@ fetch('gamesList.json')
 
       // Play button
       card.querySelector('button').onclick = () => {
+        clickSound.play();
         gameFrame.src = `games/${game.folder}/index.html`;
         iframeContainer.style.display = "block";
         gameCardsContainer.style.display = "none";
@@ -42,6 +45,7 @@ fetch('gamesList.json')
       const favoriteBtn = card.querySelector('.favoriteBtn');
       let isFavorite = false;
       favoriteBtn.addEventListener('click', () => {
+        clickSound.play();
         isFavorite = !isFavorite;
         favoriteBtn.src = isFavorite ? "assets/star-yes.png" : "assets/star-no.png";
       });
@@ -53,6 +57,7 @@ fetch('gamesList.json')
 
 // Back button
 backBtn.addEventListener('click', () => {
+  clickSound.play();
   iframeContainer.style.display = "none";
   gameCardsContainer.style.display = "flex";
   gameFrame.src = "";
@@ -60,14 +65,8 @@ backBtn.addEventListener('click', () => {
 
 // Fullscreen button
 fullscreenBtn.addEventListener('click', () => {
+  clickSound.play();
   if (gameFrame.requestFullscreen) {
     gameFrame.requestFullscreen();
-  }
-});
-
-// Minimize button
-minimizeBtn.addEventListener('click', () => {
-  if (document.exitFullscreen) {
-    document.exitFullscreen();
   }
 });
