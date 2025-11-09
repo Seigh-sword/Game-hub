@@ -1,116 +1,168 @@
+/* --- General Page Styling --- */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #111;
+  font-family: 'Arial', sans-serif;
+  background: #0a0a0a;
   color: #fff;
-  text-align: center;
   margin: 0;
   padding: 20px;
+  text-align: center;
 }
 
 header h1 {
+  font-size: 2.5em;
   margin-bottom: 5px;
-  font-size: 2em;
+  color: #0ff;
+  text-shadow: 0 0 8px #0ff;
 }
 
 header p {
-  margin-top: 0;
+  margin: 0;
   color: #aaa;
+  font-size: 1em;
 }
 
-/* Card container */
+/* --- Card Container --- */
 .card-container {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
-/* Individual cards */
+/* --- Individual Cards --- */
 .card {
-  background-color: #222;
-  padding: 20px;
-  border-radius: 8px;
-  width: 220px;
+  background: linear-gradient(145deg, #111, #222);
+  border-radius: 12px;
+  width: 230px;
+  padding: 15px;
   text-align: center;
-  box-shadow: 0 0 10px #0ff;
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 15px #0ff55a50;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
+  overflow: hidden;
 }
 
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 15px #0ff;
+  box-shadow: 0 0 25px #0ff;
 }
 
+/* --- Card Text --- */
 .card h3 {
-  margin: 0 0 10px 0;
-  font-size: 1.2em;
+  font-size: 1.3em;
+  margin: 10px 0 5px;
 }
 
 .card p {
-  margin: 0 0 10px 0;
-  color: #aaa;
+  margin: 0 0 10px;
   font-size: 0.9em;
+  color: #aaa;
 }
 
+/* --- Card Button --- */
 .card button {
   padding: 10px 20px;
   border: none;
-  border-radius: 6px;
-  background-color: #0ff;
+  border-radius: 8px;
+  background: #0ff;
   color: #111;
   font-weight: bold;
   cursor: pointer;
+  transition: 0.2s;
 }
 
 .card button:hover {
-  background-color: #0aa;
+  background: #0aa;
+  transform: scale(1.05);
 }
 
-/* Like star */
-.like-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* --- Thumbnail --- */
+.thumbnail {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.thumbnail:hover {
+  transform: scale(1.05);
+}
+
+/* --- Favorite Star --- */
+.favorite-container {
   margin-top: 10px;
 }
 
-.like-container img {
-  width: 30px;
+.favorite-container img {
+  width: 20px;
+  height: 20px;
   cursor: pointer;
-  transition: transform 0.1s;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
 }
 
-.like-container img:hover {
-  transform: scale(1.1);
+.favorite-container img.clicked {
+  transform: scale(1.5);
 }
 
-.like-container span {
-  margin-left: 8px;
-  font-weight: bold;
-}
-
-/* Iframe container */
+/* --- Iframe Overlay --- */
 #iframeContainer {
-  margin-top: 20px;
-  display: none; /* hidden until play clicked */
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.95);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
+#iframeContainer iframe {
+  width: 90%;
+  height: 80%;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #0ff;
+  transition: transform 0.3s ease;
+}
+
+/* --- Iframe Buttons --- */
 #iframeButtons {
   margin-top: 10px;
 }
 
 #iframeButtons button {
-  margin: 0 5px;
-  padding: 8px 15px;
+  margin: 0 10px;
+  padding: 10px 20px;
   border: none;
-  border-radius: 5px;
-  background-color: #0ff;
+  border-radius: 8px;
+  background: #0ff;
   color: #111;
+  font-weight: bold;
   cursor: pointer;
+  transition: 0.2s;
 }
 
 #iframeButtons button:hover {
-  background-color: #0aa;
+  background: #0aa;
+  transform: scale(1.05);
+}
+
+/* --- Responsive --- */
+@media screen and (max-width: 768px) {
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #iframeContainer iframe {
+    width: 95%;
+    height: 70%;
+  }
 }
