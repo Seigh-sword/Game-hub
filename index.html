@@ -9,14 +9,21 @@
 <body>
   <header>
     <h1>Game Hub</h1>
-    <p>Click a game below to play</p>
+    <p>Click "Play" to start a game</p>
   </header>
 
-  <!-- Cards Container -->
+  <!-- Container for game cards -->
   <div id="gameCards" class="card-container"></div>
 
   <!-- Game iframe -->
-  <iframe id="gameFrame" width="800" height="600" style="border:none; margin-top:20px;"></iframe>
+  <div id="iframeContainer">
+    <iframe id="gameFrame" width="800" height="600" style="border:none;"></iframe>
+    <div id="iframeButtons">
+      <button id="backBtn">Back</button>
+      <button id="fullscreenBtn">Fullscreen</button>
+      <button id="minimizeBtn">Minimize</button>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
