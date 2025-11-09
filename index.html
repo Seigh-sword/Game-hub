@@ -1,30 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Hub</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Game Hub</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Game Hub</h1>
-    <p>Click "Play" to start a game</p>
-  </header>
+    <header>
+        <h1>Seigh_sword Game Hub</h1>
+        <p>Explore games, mark favorites, filter by genre, and play!</p>
+    </header>
 
-  <!-- Container for game cards -->
-  <div id="gameCards" class="card-container"></div>
-
-  <!-- Game iframe -->
-  <div id="iframeContainer">
-    <iframe id="gameFrame" width="800" height="600" style="border:none;"></iframe>
-    <div id="iframeButtons">
-      <button id="backBtn">Back</button>
-      <button id="fullscreenBtn">Fullscreen</button>
-      <button id="minimizeBtn">Minimize</button>
+    <!-- Controls: Search, Genre, Sort -->
+    <div id="hubControls" style="margin-top: 20px;">
+        <input type="text" id="searchInput" placeholder="Search games..." style="padding:8px 12px; border-radius:6px; border:none; width:200px;">
+        <select id="genreFilter" style="padding:8px 12px; border-radius:6px; border:none; margin-left:10px;">
+            <option value="all">All Genres</option>
+            <!-- JS will populate the rest dynamically -->
+        </select>
+        <button id="sortFavBtn" style="padding:8px 15px; margin-left:10px; border-radius:6px; border:none; background:#0ff; color:#111; font-weight:bold; cursor:pointer;">Sort Favorites</button>
     </div>
-  </div>
 
-  <script src="script.js"></script>
+    <!-- Game cards container -->
+    <div id="gameCards" class="card-container"></div>
+
+    <!-- Fullscreen iframe overlay -->
+    <div id="iframeContainer" style="display:none; flex-direction:column; justify-content:center; align-items:center;">
+        <iframe id="gameFrame" src=""></iframe>
+        <div id="iframeButtons" style="margin-top:10px;">
+            <button id="backBtn">Back</button>
+            <button id="fullscreenBtn">Fullscreen</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
