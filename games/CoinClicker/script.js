@@ -1,38 +1,67 @@
-let coinCount = 0;
+let score = 0;
+let coins = 0;
+let clickPower = 1;
+let clickUpgradeCost = 10;
+let autoClickPower = 0;
+let autoClickCost = 50;
 
-const coin = document.getElementById('coin');
-const coinDisplay = document.getElementById('coinCount');
-const clickSfx = document.getElementById('clickSfx');
-const coinSfx = document.getElementById('coinSfx');
-const upgradeContainer = document.getElementById('upgradeButtons');
+const scoreEl = document.getElementById('score');
+const coinsEl = document.getElementById('coins');
+const coinBtn = document.getElementById('coinBtn');
+const clickUpgradeBtn = document.getElementById('clickUpgrade');
+const autoClickBtn = document.getElementById('autoClick');
 
-// Example upgrades
-const upgrades = [
-  { name: "Double Click", cost: 10, multiplier: 2 },
-  { name: "Super Click", cost: 50, multiplier: 5 }
-];
+const clickSound = document.getElementById('clickSound');
+const coinSound = document.getElementById('coinSound');
 
-// Click coin function
-coin.addEventListener('click', () => {
-  coinCount++;
-  coinDisplay.textContent = coinCount;
-  clickSfx.play();
-  coinSfx.play();
+// Coin click handler
+coinBtn.addEventListener('click', () => {
+  score += clickPower;
+  coins += clickPower;
+  updateDisplay();
+  playSound(clickSound);
 });
 
-// Create upgrade buttons
-upgrades.forEach((upgrade, index) => {
-  const btn = document.createElement('button');
-  btn.textContent = `${upgrade.name} (Cost: ${upgrade.cost})`;
-  
-  btn.addEventListener('click', () => {
-    if (coinCount >= upgrade.cost) {
-      coinCount -= upgrade.cost;
-      coinCount += upgrade.multiplier;
-      coinDisplay.textContent = coinCount;
-      clickSfx.play();
-    }
-  });
-
-  upgradeContainer.appendChild(btn);
+// Click Upgrade
+clickUpgradeBtn.addEventListener('click', () => {
+  if (coins >= clickUpgradeCost) {
+    coins -= clickUpgradeCost;
+    clickPower++;
+    clickUpgradeCost = Math.floor(clickUpgradeCost * 1.5);
+    updateDisplay();
+    playSound(coinSound);
+    clickUpgradeBtn.textContent = `Click Upgrade (+1) — Cost: ${clickUpgradeCost}`;
+  }
 });
+
+// Auto Click Upgrade
+autoClickBtn.addEventListener('click', () => {
+  if (coins >= autoClickCost) {
+    coins -= autoClickCost;
+    autoClickPower++;
+    autoClickCost = Math.floor(autoClickCost * 1.8);
+    updateDisplay();
+    playSound(coinSound);
+    autoClickBtn.textContent = `Auto Click (+1/sec) — Cost: ${autoClickCost}`;
+  }
+});
+
+// Auto click loop
+setInterval(() => {
+  if (autoClickPower > 0) {
+    score += autoClickPower;
+    coins += autoClickPower;
+    updateDisplay();
+  }
+}, 1000);
+
+// Helpers
+function updateDisplay() {
+  scoreEl.textContent = score;
+  coinsEl.textContent = coins;
+}
+
+function playSound(audio) {
+  audio.currentTime = 0;
+  audio.play();
+}
