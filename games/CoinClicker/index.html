@@ -2,30 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coin Clicker</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="coinClicker.css">
 </head>
 <body>
+
   <h1>Coin Clicker</h1>
 
-  <div class="top-row">
-    <div class="score">
-      Score: <span id="coinCount">0</span>
-    </div>
-    <div class="upgrades">
-      <h3>Upgrades</h3>
-      <div id="upgradeButtons"></div>
-    </div>
+  <div id="scoreBoard">
+    <div>Score: <span id="score">0</span></div>
+    <div>Coins: <span id="coins">0</span></div>
   </div>
 
-  <div class="coin-container">
-    <img id="coin" src="assets/coin.png" alt="Coin">
+  <button id="coinBtn">
+    <img src="coin.png" alt="Coin">
+  </button>
+
+  <div id="upgrades">
+    <button class="upgradeBtn" id="clickUpgrade">Click Upgrade (+1) — Cost: 10</button>
+    <button class="upgradeBtn" id="autoClick">Auto Click (+1/sec) — Cost: 50</button>
   </div>
 
-  <audio id="clickSfx" src="assets/click-sfx.mp3"></audio>
-  <audio id="coinSfx" src="assets/coin-sfx.mp3"></audio>
+  <!-- Sounds -->
+  <audio id="clickSound" src="click-sfx.mp3"></audio>
+  <audio id="coinSound" src="coin-sfx.mp3"></audio>
 
-  <script src="script.js"></script>
+  <script src="coinClicker.js"></script>
 </body>
 </html>
